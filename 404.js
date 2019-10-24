@@ -72,7 +72,7 @@ async function fetchHandler(e) {
 
   switch (path) {
   case '/http':
-    return makeRes('Çë¸üĞÂ cfworker µ½×îĞÂ°æ±¾!')
+    return makeRes('è¯·æ›´æ–° cfworker åˆ°æœ€æ–°ç‰ˆæœ¬!')
   case '/ws':
     return makeRes('not support', 400)
   case '/works':
@@ -109,7 +109,7 @@ function httpHandler(req, pathname) {
   const reqHdrNew = new Headers(reqHdrRaw)
   reqHdrNew.set('x-jsproxy', '1')
 
-  // ´Ë´¦Âß¼­ºÍ http-dec-req-hdr.lua ´óÖÂÏàÍ¬
+  // æ­¤å¤„é€»è¾‘å’Œ http-dec-req-hdr.lua å¤§è‡´ç›¸åŒ
   // https://github.com/EtherDream/jsproxy/blob/master/lua/http-dec-req-hdr.lua
   const refer = reqHdrNew.get('referer')
   const query = refer.substr(refer.indexOf('?') + 1)
@@ -120,7 +120,7 @@ function httpHandler(req, pathname) {
 
   for (const [k, v] of Object.entries(param)) {
     if (k.substr(0, 2) === '--') {
-      // ÏµÍ³ĞÅÏ¢
+      // ç³»ç»Ÿä¿¡æ¯
       switch (k.substr(2)) {
       case 'aceh':
         acehOld = true
@@ -130,7 +130,7 @@ function httpHandler(req, pathname) {
         break
       }
     } else {
-      // »¹Ô­ HTTP ÇëÇóÍ·
+      // è¿˜åŸ HTTP è¯·æ±‚å¤´
       if (v) {
         reqHdrNew.set(k, v)
       } else {
@@ -142,7 +142,7 @@ function httpHandler(req, pathname) {
     reqHdrNew.delete('referer')
   }
 
-  // cfworker »á°ÑÂ·¾¶ÖĞµÄ `//` ºÏ²¢³É `/`
+  // cfworker ä¼šæŠŠè·¯å¾„ä¸­çš„ `//` åˆå¹¶æˆ `/`
   const urlStr = pathname.replace(/^(https?):\/+/, '$1://')
   const urlObj = newUrl(urlStr)
   if (!urlObj) {
